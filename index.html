@@ -1,85 +1,355 @@
-
+<!-- This single file contains all HTML, Tailwind CSS, and JavaScript for the responsive landing page. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HomeBiz Travel Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eAccess PH Portal - Simulan ang Travel Business Mo Ngayon!</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Montserrat Font (similar to the requested style) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", Arial, sans-serif;
-      background: linear-gradient(135deg, #007bff, #00bcd4);
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
+    <!-- Facebook Pixel Code (IMPORTANT: REPLACE 'YOUR_FB_PIXEL_ID_HERE' with your actual Pixel ID) -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_FB_PIXEL_ID_HERE'); // <<< PALITAN ITO!
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=YOUR_FB_PIXEL_ID_HERE&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
 
-    header {
-      text-align: center;
-      padding: 40px 20px 20px;
-      color: white;
-    }
+    <style>
+        /* Custom styles for Montserrat font and general aesthetics */
+        body {
+            /* Changed from 'Inter' to 'Montserrat' to match the desired look */
+            font-family: 'Montserrat', sans-serif;
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 165, 0, 0.6);
+        }
+        .feature-card {
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Responsive video container for the "frame" effect */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            /* Red Border/Frame */
+            border: 8px solid #b91c1c; /* Dark Red Border */
+            /* Red Shadow for emphasis */
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.8); 
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Animated Gradient for Travel Sections - Applied to BODY */
+        @keyframes subtle-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    header h1 {
-      font-size: 2em;
-      margin: 0;
-    }
+        .travel-animated-bg {
+            /* Base gradient for sky/travel feel: Light blues and cyan */
+            background: linear-gradient(-45deg, #f0f9ff, #e0f2f1, #b2ebf2, #80deea);
+            background-size: 400% 400%;
+            animation: subtle-flow 30s ease infinite; /* Slowed down to 30s for ultra-subtlety */
+        }
 
-    .container {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-      width: 90%;
-      max-width: 700px;
-      padding: 20px;
-      margin-bottom: 30px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 80vh;
-      border: none;
-      border-radius: 10px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      color: white;
-      font-size: 0.9em;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.5em;
-      }
-
-      iframe {
-        height: 70vh;
-      }
-    }
-  </style>
+        /* --- Custom Blinking Animation for CTA (blink2x) --- */
+        @keyframes blink-2x {
+            0%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.1; } /* Makes it aggressively blink twice per cycle */
+            50% { opacity: 1; }
+        }
+        .blinking-text {
+            /* 0.7s duration for a fast, noticeable flash effect, repeating infinitely */
+            animation: blink-2x 0.7s infinite; 
+        }
+        /* ------------------------------------------------ */
+        
+        /* New style for Testimonial Cards */
+        .testimonial-card {
+            background-color: #ffffff; /* White background for image content */
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.75rem; /* rounded-xl */
+            /* Setting a fixed aspect ratio or max-height helps maintain layout integrity */
+            max-height: 400px; 
+            object-fit: cover;
+        }
+    </style>
 </head>
+<!-- APPLYING ANIMATED BACKGROUND TO THE WHOLE PAGE BODY -->
+<body class="text-gray-800 travel-animated-bg">
 
-<body>
-  <header>
-    <h1>HomeBiz Travel Portal</h1>
-    <p>Powered by Google Apps Script</p>
-  </header>
+    <!-- Navigation Bar - MENU REMOVED -->
+    <header class="sticky top-0 bg-white shadow-md z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-start items-center">
+            <!-- UPDATED BRAND NAME: eAccess PH Portal -->
+            <div class="text-2xl font-bold text-indigo-600">eAccess PH <span class="text-orange-500">Portal</span></div>
+        </div>
+    </header>
 
-  <div class="container">
-    <iframe 
-      src="https://script.google.com/macros/s/AKfycbyajW-IpKztEn2njubvKbPdA9rb2W_VOSKlcJkZ8mILZaI0UKkgdOqZHAM2kGs5EquhOw/exec" 
-      allowfullscreen>
-    </iframe>
-  </div>
+    <main class="container mx-auto px-4 py-8">
 
-  <footer>
-    © 2025 HomeBiz Travel Portal | All Rights Reserved
-  </footer>
+        <!-- I. Hero Section (1️⃣ HERO SECTION) -->
+        <section id="hero" class="relative mb-12 rounded-xl text-center bg-white py-10 shadow-xl overflow-hidden">
+            
+            <!-- UPDATED HEADLINE CONTENT -->
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-6 leading-tight text-indigo-900">
+                <span class="block">Pangarap mong magka-negosyo?</span>
+                <span class="block mt-3">Gawin nating totoo ‘yan!</span>
+                <span class="block mt-3 font-normal">
+                    Simulan ang sariling <span class="font-extrabold text-red-600">Travel & Tours business</span> 
+                    kahit nasa bahay ka lang — with <span class="font-extrabold text-red-600">eAccess PH Portal</span>!
+                </span>
+            </h1>
+            
+            <!-- Video with Frame (📍 ILALAGAY DITO ANG VIDEO PRESENTASYON) -->
+            <div class="max-w-4xl mx-auto rounded-xl overflow-hidden mb-8">
+                <div class="video-container">
+                    <!-- YouTube Iframe: Video ID FvOz70rWHXM -->
+                    <iframe 
+                        src="https://www.youtube.com/embed/FvOz70rWHXM?rel=0&showinfo=0&iv_load_policy=3"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        title="eAccess PH Portal Business Opportunity Video"
+                        class="w-full h-full"
+                    ></iframe>
+                </div>
+                <p class="text-sm text-gray-500 mt-2">Panoorin ang kumpletong presentasyon</p>
+            </div>
+            
+            <!-- Countdown Timer -->
+            <div id="countdown-timer-hero" class="flex justify-center space-x-4 text-3xl sm:text-4xl font-mono text-indigo-700 mb-6">
+                <div class="bg-indigo-100 p-3 rounded-lg shadow-md"><span id="hours-hero">00</span><span class="block text-xs sm:text-sm text-gray-500">Hours</span></div>
+                <div class="bg-indigo-100 p-3 rounded-lg shadow-md"><span id="minutes-hero">00</span><span class="block text-xs sm:text-sm text-gray-500">Minutes</span></div>
+                <div class="bg-indigo-100 p-3 rounded-lg shadow-md"><span id="seconds-hero">00</span><span class="block text-xs sm:text-sm text-gray-500">Seconds</span></div>
+            </div>
+
+            <!-- Main CTA Button -->
+            <a href="https://eaccessph.com/register/100000002" target="_blank" 
+               class="cta-button inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full text-xl sm:text-2xl uppercase tracking-wider">
+                <span class="font-bold text-red-100 blinking-text">JOIN NOW TODAY!</span>
+            </a>
+            
+        </section>
+        
+        <!-- III. Business Package & Inclusions (3️⃣ PROMO & PRICING SECTION) -->
+        <section id="package" class="py-12 bg-white rounded-xl shadow-lg my-12">
+            <!-- UPDATED TITLE: Ang eAccess PH Portal Business Package -->
+            <h2 class="text-3xl font-bold text-center mb-10 text-indigo-700">Ang <span class="font-bold text-red-600">eAccess PH Portal</span> Business Package</h2>
+            
+            <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
+                
+                <!-- 1. Price Header (Modern Look) -->
+                <div class="bg-gradient-to-r from-orange-500 to-amber-500 text-white p-6 md:p-10 text-center rounded-t-2xl">
+                    <p class="text-3xl font-extrabold mb-2 uppercase tracking-widest"><span class="font-bold text-red-100">Lifetime Business Access</span></p>
+                    <p class="text-xl font-medium mb-1 line-through text-red-300">Original Price: ₱9,998</p>
+                    <p class="text-7xl font-extrabold leading-none"><span class="font-bold text-red-100">₱4,998</span></p>
+                    <p class="text-xl font-medium mt-1">PROMO PRICE - <span class="font-bold text-red-100">One-Time Payment</span>, Lifetime Access!</p>
+                </div>
+
+                <!-- 2. Content Grid (Clear & Easy to Read) -->
+                <div class="p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Column 1: Core Services Offered -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h4 class="text-2xl font-bold mb-4 text-indigo-600 flex items-center">
+                            <span class="mr-3 text-3xl">🚀</span> Services Offered
+                        </h4>
+                        <ul class="space-y-4 text-gray-700 text-lg">
+                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Flight Booking</span></li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Hotel Booking</span></li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Ferry Booking</span></li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Tours and Packages</span></li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Bills Payment</span></li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">E Loading</span></li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Insurance</span></li>
+                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Visa Application</span></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Column 2: Business Inclusions & Benefits -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h4 class="text-2xl font-bold mb-4 text-indigo-600 flex items-center">
+                            <span class="mr-3 text-3xl">🎁</span> Package Inclusions
+                        </h4>
+                        <ul class="space-y-4 text-gray-700 text-lg">
+                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">One time Payment</span></li>
+                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">No networking</span></li>
+                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Operate under your own business name</span></li>
+                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Custom logo and branding</span></li>
+                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Free recorded video trainings</span></li>
+                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Downloadable manual</span></li>
+                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Printable Tarpaulin</span></li>
+                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Marketing materials</span></li>
+                        </ul>
+                        <p class="text-base text-gray-500 mt-6 pt-4 border-t">
+                            Ideal for entrepreneurs and small businesses seeking a ready-to-launch travel and services platform.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Secondary CTA -->
+            <div class="text-center mt-10">
+                <a href="https://eaccessph.com/register/100000002" target="_blank" 
+                   class="cta-button inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-full text-xl sm:text-2xl uppercase tracking-wider">
+                    <!-- Text: GRAB THE ₱4,998 PROMO PACKAGE NOW! with blinker -->
+                    <span class="font-bold text-red-100 blinking-text">GRAB THE ₱4,998 PROMO PACKAGE NOW!</span>
+                </a>
+            </div>
+        </section>
+        
+        <!-- VI. Testimonials and Social Proof (4️⃣ TESTIMONIALS SECTION) -->
+        <section id="success" class="py-12 bg-indigo-50 rounded-xl shadow-lg my-12">
+            <!-- Updated Title -->
+            <h2 class="text-3xl font-bold text-center mb-10 text-indigo-700">Ang Ating Mga Partners: <span class="text-red-600">Success Stories</span></h2>
+            <p class="text-center text-xl text-gray-700 mb-8 max-w-4xl mx-auto">Tingnan ang mga tunay na kwento ng tagumpay mula sa aming mga masisipag na <span class="font-bold text-red-600">eAccess PH Portal</span> partners!</p>
+            
+            <!-- Testimonial Image Grid - Testimonial 1 is now using the full GitHub link. -->
+            <div class="max-w-6xl mx-auto mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+                
+                <!-- Testimonial 1: USING EXTERNAL GITHUB BLOB URL (Note: This may not display correctly, usually the raw link is required.) -->
+                <div class="testimonial-card p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
+                    <img src="https://github.com/ayosbenta/eaccessph/blob/main/528627987_663985492728956_2684991496278863543_n.jpg" 
+                         alt="Testimonial 1 - Julie May C. Azucena" 
+                         class="rounded-xl object-cover h-auto"/>
+                    <p class="text-center mt-3 text-sm text-gray-500 font-semibold">
+                        Julie May C. Azucena - OFW Success Story!
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2: Placeholder Image (Still needs replacement) -->
+                <div class="testimonial-card p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
+                    <!-- Placeholder: Maroon BG - Paki-replace ito ng next image file name -->
+                    <img src="https://placehold.co/500x400/800000/FFFFFF?text=Success+Story+2" 
+                         alt="Testimonial 2 - Success Story" 
+                         class="rounded-xl object-cover h-auto"/>
+                    <p class="text-center mt-3 text-sm text-gray-500 font-semibold">
+                        **PLACEHOLDER IMAGE** - I-upload ang next image para mapalitan.
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3: Placeholder Image (Still needs replacement) -->
+                <div class="testimonial-card p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
+                    <!-- Placeholder: Orange BG - Paki-replace ito ng huling image file name -->
+                    <img src="https://placehold.co/500x400/FFA500/000000?text=Success+Story+3" 
+                         alt="Testimonial 3 - Success Story" 
+                         class="rounded-xl object-cover h-auto"/>
+                    <p class="text-center mt-3 text-sm text-gray-500 font-semibold">
+                        **PLACEHOLDER IMAGE** - I-upload ang huling image para mapalitan.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Secondary CTA below earnings (5️⃣ CALL TO ACTION) -->
+            <div class="text-center mt-10">
+                <p class="text-2xl font-bold text-indigo-700 mb-4">🚀 Ready ka na bang magsimula at maging susunod na success story?</p>
+                <!-- Text: JOIN NOW TODAY! with blinker -->
+                <a href="https://eaccessph.com/register/100000002" target="_blank" 
+                   class="cta-button inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full text-xl sm:text-2xl uppercase tracking-wider">
+                    <span class="font-bold text-red-100 blinking-text">JOIN NOW TODAY!</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- V. Important Disclaimer & Compliance -->
+        <section id="disclaimer" class="py-10 bg-red-50 border-t-4 border-red-500 rounded-xl shadow-inner my-12 px-6">
+            <h2 class="text-2xl font-bold text-red-700 mb-4 text-center">MAHALAGANG PAALALA (<span class="font-bold text-red-700">Important Notice</span>)</h2>
+            <div class="text-sm text-gray-700 space-y-3 max-w-3xl mx-auto">
+                <p class="font-bold text-red-600">Ang <span class="font-bold text-red-700">eAccess PH Portal</span> ay HINDI isang <span class="font-bold text-red-700">investment opportunity</span>.</p>
+                <p>Ang <span class="font-bold text-red-700">eAccess PH Portal</span> ay HINDI nagbebenta ng <span class="font-bold text-red-700">shares, securities</span>, o anumang financial products, at HINDI kami nangangako ng <span class="font-bold text-red-700">passive income</span> o garantisadong kita. Ito ay isang B2B travel solutions at affiliate marketing platform kung saan ang kita ay nagmumula sa aktwal na pagbebenta ng travel products at services (flights, hotels, tours). </p>
+                <p>Ang tagumpay sa <span class="font-bold text-red-700">eAccess PH Portal</span> ay nakasalalay sa sariling <span class="font-bold text-red-700">pagsisikap, kasanayan, at tamang paggamit</span> ng aming sistema. Ito ay HINDI isang <span class="font-bold text-red-700">passive income scheme</span> o ROI-based investment. Walang garantisadong kita—ang resulta mo ay nakadepende sa sipag, diskarte, at consistency mo. Ang <span class="font-bold text-red-700">eAccess PH Portal</span> ay HINDI isang <span class="font-bold text-red-700">Multi-Level Marketing (MLM)</span> o Network Marketing business. Ang kita mo ay nakadepende sa aksyon at performance mo.</p>
+                <p class="text-xs text-center mt-4">By joining <span class="font-bold text-red-700">eAccess PH Portal</span>, you accept that this is a business opportunity, NOT an investment, MLM, or network marketing program.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 eAccess PH Portal. Your Ultimate B2B Travel Solutions Platform. All Rights Reserved.</p>
+            <p class="text-sm text-gray-400 mt-2">Grow your business and maximize your earning potential.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Countdown Timer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Countdown Timer Logic (Used only for Hero Section Urgency) ---
+            // Set initial timer state based on user's desired urgency (00:33:42)
+            const initialMinutes = 33; 
+            const initialSeconds = 42;
+            const initialHours = 0; 
+
+            let totalSeconds = (initialHours * 3600) + (initialMinutes * 60) + initialSeconds;
+
+            /**
+             * Updates the displayed time for all timer instances on the page.
+             */
+            function updateTimer() {
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+
+                const display = (id) => document.getElementById(id);
+                
+                // Function to format time with leading zero
+                const formatTime = (time) => String(time).padStart(2, '0');
+
+                // Update Hero timer
+                if (display('hours-hero')) display('hours-hero').textContent = formatTime(hours);
+                if (display('minutes-hero')) display('minutes-hero').textContent = formatTime(minutes);
+                if (display('seconds-hero')) display('seconds-hero').textContent = formatTime(seconds);
+
+                if (totalSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    console.log("Offer expired.");
+                    // In a real application, you might visually disable the CTA or reset the timer here
+                } else {
+                    totalSeconds--;
+                }
+            }
+
+            // Start the timer
+            let timerInterval = setInterval(updateTimer, 1000);
+            updateTimer(); // Initial call to display time immediately
+        });
+    </script>
 </body>
 </html>
