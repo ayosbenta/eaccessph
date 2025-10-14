@@ -8,8 +8,8 @@
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Load Montserrat Font (similar to the requested style) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Load Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <!-- Facebook Pixel Code (IMPORTANT: REPLACE 'YOUR_FB_PIXEL_ID_HERE' with your actual Pixel ID) -->
     <script>
@@ -32,34 +32,35 @@
     <style>
         /* Custom styles for Montserrat font and general aesthetics */
         body {
-            /* Changed from 'Inter' to 'Montserrat' to match the desired look */
             font-family: 'Montserrat', sans-serif;
         }
+        
+        /* Modern Pulse Animation for CTA (Subtle and Professional) */
+        @keyframes pulse-modern {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(255, 165, 0, 0.8); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4); }
+        }
+
         .cta-button {
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+            animation: pulse-modern 2s infinite ease-in-out; /* Applied modern pulse */
         }
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 165, 0, 0.6);
+            animation-play-state: paused; /* Pause pulse on hover */
+            box-shadow: 0 6px 20px rgba(255, 165, 0, 0.8);
         }
-        .feature-card {
-            transition: transform 0.3s;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        /* Responsive video container for the "frame" effect */
+
+        /* Responsive video container - REMOVED THICK BORDER, ADDED SHADOW */
         .video-container {
             position: relative;
             width: 100%;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
-            /* Red Border/Frame */
-            border: 8px solid #b91c1c; /* Dark Red Border */
-            /* Red Shadow for emphasis */
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.8); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Deep shadow for elevation */
+            border: 4px solid #fff; /* Thin white border for cleanliness */
         }
         .video-container iframe {
             position: absolute;
@@ -77,35 +78,27 @@
         }
 
         .travel-animated-bg {
-            /* Base gradient for sky/travel feel: Light blues and cyan */
-            background: linear-gradient(-45deg, #f0f9ff, #e0f2f1, #b2ebf2, #80deea);
+            /* Softer, cleaner gradient */
+            background: linear-gradient(-45deg, #f0f4f8, #e0f0f5, #d6e8f0, #c3d9e8);
             background-size: 400% 400%;
-            animation: subtle-flow 30s ease infinite; /* Slowed down to 30s for ultra-subtlety */
+            animation: subtle-flow 40s ease infinite; /* Slower, more subtle flow */
         }
-
-        /* --- Custom Blinking Animation for CTA (blink2x) --- */
-        @keyframes blink-2x {
-            0%, 100% { opacity: 1; }
-            25%, 75% { opacity: 0.1; } /* Makes it aggressively blink twice per cycle */
-            50% { opacity: 1; }
-        }
-        .blinking-text {
-            /* 0.7s duration for a fast, noticeable flash effect, repeating infinitely */
-            animation: blink-2x 0.7s infinite; 
-        }
-        /* ------------------------------------------------ */
         
-        /* New style for Testimonial Cards */
+        /* New style for Testimonial Cards (Elevated) */
         .testimonial-card {
-            background-color: #ffffff; /* White background for image content */
+            background-color: #ffffff;
             border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-8px); /* Lift significantly */
+            box-shadow: 0 12px 25px rgba(255, 99, 71, 0.2); /* Subtle red/tomato hover shadow */
         }
         .testimonial-card img {
             width: 100%;
             height: auto;
-            border-radius: 0.75rem; /* rounded-xl */
-            /* Setting a fixed aspect ratio or max-height helps maintain layout integrity */
+            border-radius: 0.75rem;
             max-height: 400px; 
             object-fit: cover;
         }
@@ -114,32 +107,32 @@
 <!-- APPLYING ANIMATED BACKGROUND TO THE WHOLE PAGE BODY -->
 <body class="text-gray-800 travel-animated-bg">
 
-    <!-- Navigation Bar - MENU REMOVED -->
-    <header class="sticky top-0 bg-white shadow-md z-10">
-        <div class="container mx-auto px-4 py-3 flex justify-start items-center">
-            <!-- UPDATED BRAND NAME: eAccess PH Portal -->
-            <div class="text-2xl font-bold text-indigo-600">eAccess PH <span class="text-orange-500">Portal</span></div>
+    <!-- Navigation Bar - CENTERING THE LOGO TEXT & ENHANCED FONT -->
+    <header class="sticky top-0 bg-white shadow-lg z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-center items-center">
+            <!-- UPDATED BRAND NAME: eAccess PH Portal (Larger and Bolder) -->
+            <div class="text-3xl font-extrabold text-indigo-700">eAccess PH <span class="text-red-600">Portal</span></div>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-8">
 
         <!-- I. Hero Section (1️⃣ HERO SECTION) -->
-        <section id="hero" class="relative mb-12 rounded-xl text-center bg-white py-10 shadow-xl overflow-hidden">
+        <section id="hero" class="relative mb-12 rounded-2xl text-center bg-white py-12 shadow-2xl overflow-hidden">
             
-            <!-- UPDATED HEADLINE CONTENT -->
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-6 leading-tight text-indigo-900">
+            <!-- UPDATED HEADLINE CONTENT (Higher contrast) -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-8 leading-tight text-gray-900">
                 <span class="block">Pangarap mong magka-negosyo?</span>
-                <span class="block mt-3">Gawin nating totoo ‘yan!</span>
-                <span class="block mt-3 font-normal">
-                    Simulan ang sariling <span class="font-extrabold text-red-600">Travel & Tours business</span> 
-                    kahit nasa bahay ka lang — with <span class="font-extrabold text-red-600">eAccess PH Portal</span>!
-                </span>
+                <span class="block mt-4">Gawin nating <span class="text-red-600">TOTOO</span> ‘yan!</span>
             </h1>
+            <p class="text-xl sm:text-2xl font-semibold mb-8 text-indigo-700 max-w-4xl mx-auto">
+                Simulan ang sariling <span class="font-extrabold text-red-600">Travel & Tours business</span> 
+                kahit nasa bahay ka lang — with <span class="font-extrabold text-indigo-900">eAccess PH Portal</span>!
+            </p>
             
-            <!-- Video with Frame (📍 ILALAGAY DITO ANG VIDEO PRESENTASYON) -->
-            <div class="max-w-4xl mx-auto rounded-xl overflow-hidden mb-8">
-                <div class="video-container">
+            <!-- Video with Modern Shadow/Frame -->
+            <div class="max-w-4xl mx-auto rounded-xl overflow-hidden mb-8 shadow-2xl">
+                <div class="video-container rounded-xl">
                     <!-- YouTube Iframe: Video ID FvOz70rWHXM -->
                     <iframe 
                         src="https://www.youtube.com/embed/FvOz70rWHXM?rel=0&showinfo=0&iv_load_policy=3"
@@ -153,101 +146,95 @@
                 <p class="text-sm text-gray-500 mt-2">Panoorin ang kumpletong presentasyon</p>
             </div>
             
-            <!-- Countdown Timer -->
-            <div id="countdown-timer-hero" class="flex justify-center space-x-4 text-3xl sm:text-4xl font-mono text-indigo-700 mb-6">
-                <div class="bg-indigo-100 p-3 rounded-lg shadow-md"><span id="hours-hero">00</span><span class="block text-xs sm:text-sm text-gray-500">Hours</span></div>
-                <div class="bg-indigo-100 p-3 rounded-lg shadow-md"><span id="minutes-hero">00</span><span class="block text-xs sm:text-sm text-gray-500">Minutes</span></div>
-                <div class="bg-indigo-100 p-3 rounded-lg shadow-md"><span id="seconds-hero">00</span><span class="block text-xs sm:text-sm text-gray-500">Seconds</span></div>
+            <!-- Countdown Timer (Sleeker Look) -->
+            <div id="countdown-timer-hero" class="flex justify-center space-x-3 sm:space-x-6 text-3xl sm:text-5xl font-mono text-white mb-8">
+                <div class="bg-red-600 p-4 rounded-xl shadow-lg w-24 sm:w-32"><span id="hours-hero">00</span><span class="block text-sm sm:text-lg font-bold">HOURS</span></div>
+                <div class="bg-red-600 p-4 rounded-xl shadow-lg w-24 sm:w-32"><span id="minutes-hero">00</span><span class="block text-sm sm:text-lg font-bold">MINS</span></div>
+                <div class="bg-red-600 p-4 rounded-xl shadow-lg w-24 sm:w-32"><span id="seconds-hero">00</span><span class="block text-sm sm:text-lg font-bold">SECS</span></div>
             </div>
 
-            <!-- Main CTA Button -->
+            <!-- Main CTA Button with modern pulse animation -->
             <a href="https://eaccessph.com/register/100000002" target="_blank" 
-               class="cta-button inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full text-xl sm:text-2xl uppercase tracking-wider">
-                <span class="font-bold text-red-100 blinking-text">JOIN NOW TODAY!</span>
+               class="cta-button inline-block bg-red-600 hover:bg-orange-700 text-white font-black py-4 px-12 rounded-full text-2xl sm:text-3xl uppercase tracking-wider">
+                <span class="text-white">SIMULAN ANG BUSINESS MO NGAYON!</span>
             </a>
+            <p class="text-lg font-bold text-gray-700 mt-4">₱4,998 PROMO PRICE - LIMITED SLOTS ONLY!</p>
             
         </section>
         
         <!-- III. Business Package & Inclusions (3️⃣ PROMO & PRICING SECTION) -->
-        <section id="package" class="py-12 bg-white rounded-xl shadow-lg my-12">
+        <section id="package" class="py-16 bg-white rounded-2xl shadow-2xl my-12">
             <!-- UPDATED TITLE: Ang eAccess PH Portal Business Package -->
-            <h2 class="text-3xl font-bold text-center mb-10 text-indigo-700">Ang <span class="font-bold text-red-600">eAccess PH Portal</span> Business Package</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-indigo-700">Ang <span class="font-black text-red-600">eAccess PH Portal</span> Business Package</h2>
             
-            <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-3xl overflow-hidden border border-gray-200">
                 
                 <!-- 1. Price Header (Modern Look) -->
-                <div class="bg-gradient-to-r from-orange-500 to-amber-500 text-white p-6 md:p-10 text-center rounded-t-2xl">
-                    <p class="text-3xl font-extrabold mb-2 uppercase tracking-widest"><span class="font-bold text-red-100">Lifetime Business Access</span></p>
+                <div class="bg-gradient-to-r from-red-600 to-orange-500 text-white p-8 md:p-12 text-center rounded-t-3xl">
+                    <p class="text-4xl font-extrabold mb-3 uppercase tracking-widest">Lifetime Business Access</p>
                     
-                    <!-- DITO NAKA BLACK ANG TEXT COLOR -->
-                    <p class="text-xl font-medium mb-1 line-through text-gray-900">Original Price: ₱9,998</p>
+                    <!-- Original Price is now BLACK and slightly bolder -->
+                    <p class="text-2xl font-bold mb-2 line-through text-gray-900">Original Price: ₱9,998</p>
                     
-                    <p class="text-7xl font-extrabold leading-none"><span class="font-bold text-red-100">₱4,998</span></p>
-                    <p class="text-xl font-medium mt-1">PROMO PRICE - <span class="font-bold text-red-100">One-Time Payment</span>, Lifetime Access!</p>
+                    <p class="text-8xl font-black leading-none"><span class="text-white">₱4,998</span></p>
+                    <p class="text-2xl font-extrabold mt-3">PROMO PRICE - <span class="text-red-100">One-Time Payment</span>, Lifetime Access!</p>
                 </div>
 
                 <!-- 2. Content Grid (Clear & Easy to Read) -->
-                <div class="p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="p-8 md:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
                     
                     <!-- Column 1: Core Services Offered -->
-                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                        <h4 class="text-2xl font-bold mb-4 text-indigo-600 flex items-center">
-                            <span class="mr-3 text-3xl">🚀</span> Services Offered
+                    <div class="bg-indigo-50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-inner">
+                        <h4 class="text-3xl font-black mb-6 text-indigo-800 flex items-center">
+                            <span class="mr-3 text-4xl">✈️</span> Core Services Offered
                         </h4>
                         <ul class="space-y-4 text-gray-700 text-lg">
-                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Flight Booking</span></li>
-                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Hotel Booking</span></li>
-                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Ferry Booking</span></li>
-                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Tours and Packages</span></li>
-                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Bills Payment</span></li>
-                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">E Loading</span></li>
-                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Insurance</span></li>
-                            <li class="flex items-start"><span class="text-orange-500 mr-3 text-xl">✅</span><span class="font-bold text-red-600">Visa Application</span></li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3 text-2xl">✔</span><span class="font-semibold">Flight Booking (Domestic & International)</span></li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3 text-2xl">✔</span><span class="font-semibold">Hotel & Accommodation Booking</span></li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3 text-2xl">✔</span><span class="font-semibold">Ferry & Land Trip Booking</span></li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3 text-2xl">✔</span><span class="font-semibold">Tours and Customized Travel Packages</span></li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3 text-2xl">✔</span><span class="font-semibold">Bills Payment & E-Loading</span></li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3 text-2xl">✔</span><span class="font-semibold">Travel Insurance & Visa Application Assistance</span></li>
                         </ul>
                     </div>
                     
                     <!-- Column 2: Business Inclusions & Benefits -->
-                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                        <h4 class="text-2xl font-bold mb-4 text-indigo-600 flex items-center">
-                            <span class="mr-3 text-3xl">🎁</span> Package Inclusions
+                    <div class="bg-orange-50 p-6 rounded-xl border-l-4 border-orange-600 shadow-inner">
+                        <h4 class="text-3xl font-black mb-6 text-orange-800 flex items-center">
+                            <span class="mr-3 text-4xl">💼</span> Business Inclusions
                         </h4>
                         <ul class="space-y-4 text-gray-700 text-lg">
-                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">One time Payment</span></li>
-                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">No networking</span></li>
-                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Operate under your own business name</span></li>
-                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Custom logo and branding</span></li>
-                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Free recorded video trainings</span></li>
-                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Downloadable manual</span></li>
-                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Printable Tarpaulin</span></li>
-                            <li class="flex items-start"><span class="text-indigo-500 mr-3 text-xl">✔️</span><span class="font-bold text-red-600">Marketing materials</span></li>
+                            <li class="flex items-center"><span class="text-indigo-600 mr-3 text-2xl">⭐</span><span class="font-semibold">One-Time Payment, **Lifetime Access**</span></li>
+                            <li class="flex items-center"><span class="text-indigo-600 mr-3 text-2xl">⭐</span><span class="font-semibold">Operate under **Iyong Sariling Business Name**</span></li>
+                            <li class="flex items-center"><span class="text-indigo-600 mr-3 text-2xl">⭐</span><span class="font-semibold">Complete Training Videos and Downloadable Manuals</span></li>
+                            <li class="flex items-center"><span class="text-indigo-600 mr-3 text-2xl">⭐</span><span class="font-semibold">Custom Logo and Branding Materials</span></li>
+                            <li class="flex items-center"><span class="text-indigo-600 mr-3 text-2xl">⭐</span><span class="font-semibold">Printable Tarpaulin and Marketing Kits</span></li>
+                            <li class="flex items-center"><span class="text-indigo-600 mr-3 text-2xl">⭐</span><span class="font-semibold">No Quota, No Networking Required!</span></li>
                         </ul>
-                        <p class="text-base text-gray-500 mt-6 pt-4 border-t">
-                            Ideal for entrepreneurs and small businesses seeking a ready-to-launch travel and services platform.
-                        </p>
                     </div>
                 </div>
             </div>
             <!-- Secondary CTA -->
-            <div class="text-center mt-10">
+            <div class="text-center mt-12">
+                <p class="text-2xl font-bold text-gray-700 mb-4">Huwag nang magpahuli! Mag-secure ng iyong slot ngayon!</p>
                 <a href="https://eaccessph.com/register/100000002" target="_blank" 
-                   class="cta-button inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-full text-xl sm:text-2xl uppercase tracking-wider">
-                    <!-- Text: GRAB THE ₱4,998 PROMO PACKAGE NOW! with blinker -->
-                    <span class="font-bold text-red-100 blinking-text">GRAB THE ₱4,998 PROMO PACKAGE NOW!</span>
+                   class="cta-button inline-block bg-red-600 hover:bg-orange-700 text-white font-black py-4 px-12 rounded-full text-2xl sm:text-3xl uppercase tracking-wider">
+                    <span class="text-white">GRAB THE ₱4,998 PROMO PACKAGE NOW!</span>
                 </a>
             </div>
         </section>
         
         <!-- VI. Testimonials and Social Proof (4️⃣ TESTIMONIALS SECTION) -->
-        <section id="success" class="py-12 bg-indigo-50 rounded-xl shadow-lg my-12">
+        <section id="success" class="py-16 bg-white rounded-2xl shadow-2xl my-12">
             <!-- Updated Title -->
-            <h2 class="text-3xl font-bold text-center mb-10 text-indigo-700">Ang Ating Mga Partners: <span class="text-red-600">Success Stories</span></h2>
-            <p class="text-center text-xl text-gray-700 mb-8 max-w-4xl mx-auto">Tingnan ang mga tunay na kwento ng tagumpay mula sa aming mga masisipag na <span class="font-bold text-red-600">eAccess PH Portal</span> partners!</p>
+            <h2 class="text-4xl font-bold text-center mb-10 text-indigo-700">Ang Ating Mga Partners: <span class="font-black text-red-600">Success Stories</span></h2>
+            <p class="text-center text-xl text-gray-700 mb-12 max-w-4xl mx-auto">Tingnan ang mga tunay na kwento ng tagumpay mula sa aming mga masisipag na <span class="font-bold text-red-600">eAccess PH Portal</span> partners!</p>
             
-            <!-- Testimonial Image Grid - CLICKABLE FOR ZOOM -->
-            <div class="max-w-6xl mx-auto mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+            <!-- Testimonial Image Grid - CLICKABLE FOR ZOOM (Enhanced Shadow and Hover) -->
+            <div class="max-w-6xl mx-auto mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
                 
                 <!-- Testimonial 1: Added cursor-pointer and onclick event -->
-                <div class="testimonial-card p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 cursor-pointer" onclick="openModal('https://raw.githubusercontent.com/ayosbenta/eaccessph/main/test1.jpg')">
+                <div class="testimonial-card p-4 rounded-xl cursor-pointer" onclick="openModal('https://raw.githubusercontent.com/ayosbenta/eaccessph/main/test1.jpg')">
                     <img src="https://raw.githubusercontent.com/ayosbenta/eaccessph/main/test1.jpg" 
                          alt="Testimonial 1 - Success Story" 
                          class="rounded-xl object-cover h-auto"/>
@@ -257,7 +244,7 @@
                 </div>
                 
                 <!-- Testimonial 2: Added cursor-pointer and onclick event -->
-                <div class="testimonial-card p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 cursor-pointer" onclick="openModal('https://raw.githubusercontent.com/ayosbenta/eaccessph/main/test2.jpg')">
+                <div class="testimonial-card p-4 rounded-xl cursor-pointer" onclick="openModal('https://raw.githubusercontent.com/ayosbenta/eaccessph/main/test2.jpg')">
                     <img src="https://raw.githubusercontent.com/ayosbenta/eaccessph/main/test2.jpg" 
                          alt="Testimonial 2 - Success Story" 
                          class="rounded-xl object-cover h-auto"/>
@@ -267,7 +254,7 @@
                 </div>
                 
                 <!-- Testimonial 3: Added cursor-pointer and onclick event -->
-                <div class="testimonial-card p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 cursor-pointer" onclick="openModal('https://raw.githubusercontent.com/ayosbenta/eaccessph/main/test3.jpg')">
+                <div class="testimonial-card p-4 rounded-xl cursor-pointer" onclick="openModal('https://raw.githubusercontent.com/ayosbenta/eaccessph/main/test3.jpg')">
                     <img src="https://raw.githubusercontent.com/ayosbenta/eaccessph/main/test3.jpg" 
                          alt="Testimonial 3 - Success Story" 
                          class="rounded-xl object-cover h-auto"/>
@@ -278,12 +265,12 @@
             </div>
             
             <!-- Secondary CTA below earnings (5️⃣ CALL TO ACTION) -->
-            <div class="text-center mt-10">
-                <p class="text-2xl font-bold text-indigo-700 mb-4">🚀 Ready ka na bang magsimula at maging susunod na success story?</p>
-                <!-- Text: JOIN NOW TODAY! with blinker -->
+            <div class="text-center mt-12">
+                <p class="text-3xl font-black text-indigo-700 mb-4">🚀 Ready ka na bang magsimula at maging susunod na success story?</p>
+                <!-- Text: JOIN NOW TODAY! with modern pulse animation -->
                 <a href="https://eaccessph.com/register/100000002" target="_blank" 
-                   class="cta-button inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full text-xl sm:text-2xl uppercase tracking-wider">
-                    <span class="font-bold text-red-100 blinking-text">JOIN NOW TODAY!</span>
+                   class="cta-button inline-block bg-red-600 hover:bg-orange-700 text-white font-black py-4 px-12 rounded-full text-2xl sm:text-3xl uppercase tracking-wider">
+                    <span class="text-white">JOIN NOW TODAY!</span>
                 </a>
             </div>
         </section>
@@ -292,7 +279,7 @@
         <section id="disclaimer" class="py-10 bg-red-50 border-t-4 border-red-500 rounded-xl shadow-inner my-12 px-6">
             <h2 class="text-2xl font-bold text-red-700 mb-4 text-center">MAHALAGANG PAALALA (<span class="font-bold text-red-700">Important Notice</span>)</h2>
             <div class="text-sm text-gray-700 space-y-3 max-w-3xl mx-auto">
-                <p class="font-bold text-red-600">Ang <span class="font-bold text-red-700">eAccess PH Portal</span> ay HINDI isang <span class="font-bold text-red-700">investment opportunity</span>.</p>
+                <p class="font-black text-red-600">Ang <span class="font-black text-red-700">eAccess PH Portal</span> ay HINDI isang <span class="font-black text-red-700">investment opportunity</span>.</p>
                 <p>Ang <span class="font-bold text-red-700">eAccess PH Portal</span> ay HINDI nagbebenta ng <span class="font-bold text-red-700">shares, securities</span>, o anumang financial products, at HINDI kami nangangako ng <span class="font-bold text-red-700">passive income</span> o garantisadong kita. Ito ay isang B2B travel solutions at affiliate marketing platform kung saan ang kita ay nagmumula sa aktwal na pagbebenta ng travel products at services (flights, hotels, tours). </p>
                 <p>Ang tagumpay sa <span class="font-bold text-red-700">eAccess PH Portal</span> ay nakasalalay sa sariling <span class="font-bold text-red-700">pagsisikap, kasanayan, at tamang paggamit</span> ng aming sistema. Ito ay HINDI isang <span class="font-bold text-red-700">passive income scheme</span> o ROI-based investment. Walang garantisadong kita—ang resulta mo ay nakadepende sa sipag, diskarte, at consistency mo. Ang <span class="font-bold text-red-700">eAccess PH Portal</span> ay HINDI isang <span class="font-bold text-red-700">Multi-Level Marketing (MLM)</span> o Network Marketing business. Ang kita mo ay nakadepende sa aksyon at performance mo.</p>
                 <p class="text-xs text-center mt-4">By joining <span class="font-bold text-red-700">eAccess PH Portal</span>, you accept that this is a business opportunity, NOT an investment, MLM, or network marketing program.</p>
@@ -314,7 +301,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white p-6 mt-12">
+    <footer class="bg-gray-900 text-white p-6 mt-12">
         <div class="container mx-auto text-center">
             <p>&copy; 2024 eAccess PH Portal. Your Ultimate B2B Travel Solutions Platform. All Rights Reserved.</p>
             <p class="text-sm text-gray-400 mt-2">Grow your business and maximize your earning potential.</p>
